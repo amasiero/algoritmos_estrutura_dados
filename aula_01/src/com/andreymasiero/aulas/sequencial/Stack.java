@@ -45,10 +45,14 @@ public class Stack {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("[");
-        for(int i = (this.size - 1); i > -1; i--) {
-            sb.append(this.array[i]);
-            sb.append(", ");
+        if (this.top > -1) {
+	        for(int i = this.top; i > -1; i--) {
+	            sb.append(this.array[i]);
+	            sb.append(", ");
+	        }
+	        return sb.replace(sb.lastIndexOf(","), sb.length(), "]").toString();
+        }else {
+    			return sb.append(" ]").toString();
         }
-        return sb.replace(sb.lastIndexOf(","), sb.length(), "]").toString();
     }
 }

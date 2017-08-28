@@ -32,7 +32,7 @@ public class Queue {
             return (-1);
         }
         int value = this.array[0];
-        for (int i = 0; i < this.back; i++) {
+        for (int i = 0; i < this.back -1; i++) {
             this.array[i] = this.array[i + 1];
         }
         this.back--;
@@ -54,10 +54,14 @@ public class Queue {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("[");
-        for(int i = 0; i < this.back; i++) {
-            sb.append(this.array[i]);
-            sb.append(", ");
+	        if(this.back > 0) {
+	        for(int i = 0; i < this.back; i++) {
+	            sb.append(this.array[i]);
+	            sb.append(", ");
+	        }
+	        return sb.replace(sb.lastIndexOf(","), sb.length(), "]").toString();
+        } else {
+        		return sb.append(" ]").toString();
         }
-        return sb.replace(sb.lastIndexOf(","), sb.length(), "]").toString();
     }
 }
