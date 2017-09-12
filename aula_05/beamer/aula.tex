@@ -39,7 +39,7 @@
 \begin{document}
 
 \selectlanguage{brazil}
-\title[Buscas e BubbleSort]{Busca Sequencial, Busca Binária e Ordenação BubbleSort}
+\title[Selection e Insertion]{Selection Sort e Insertion Sort}
 \author{Prof. Andrey Masiero}
 
 \begin{frame}[plain,noframenumbering]
@@ -51,575 +51,782 @@
   \tableofcontents
 \end{frame}
 
-\section{Busca Sequencial}
+\section{Selection Sort}
 
 \begin{frame}
-    \frametitle{Busca Sequencial}
-    \begin{center}
-        \begin{table}
-            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
-                \hline
-                31 & 16 & 45 & 87 & 37 & 99 & 21 & 43 & 10 & 48 \\ \hline
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                & & & & & & & & &
-            \end{tabular}
-        \end{table}
-	\end{center}
+	\frametitle{Selection Sort}
     \begin{itemize}[<+->]
-        \item Qual o algoritmo para encontrar o número 87?
-        \item Dado que o vetor tem 10 posições.
-        \item Pode-se ser feito uma busca sequencial.
+        \item Busca pelo menor elemento no vetor;
+        \item Depois posiciona ele na primeira posição;
+        \item Realiza novamente o processo para todos elementos até $n - 1$;
+        \item Complexidade dele: $O(n^2)$.
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Busca Sequencial}
-    \begin{center}
-        \begin{table}
-            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
-                \hline
-                31 & 16 & 45 & 87 & 37 & 99 & 21 & 43 & 10 & 48 \\ \hline
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                \color{red}{$\uparrow$} & & & & & & & & &
-            \end{tabular}
-        \end{table}
-
-        $31 == 87$ ? Não
-	\end{center}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Busca Sequencial}
-    \begin{center}
-        \begin{table}
-            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
-                \hline
-                31 & 16 & 45 & 87 & 37 & 99 & 21 & 43 & 10 & 48 \\ \hline
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                 & \color{red}{$\uparrow$} & & & & & & & &
-            \end{tabular}
-        \end{table}
-
-        $16 == 87$ ? Não
-	\end{center}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Busca Sequencial}
-    \begin{center}
-        \begin{table}
-            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
-                \hline
-                31 & 16 & 45 & 87 & 37 & 99 & 21 & 43 & 10 & 48 \\ \hline
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                & & \color{red}{$\uparrow$} & & & & & & &
-            \end{tabular}
-        \end{table}
-
-        $45 == 87$ ? Não
-	\end{center}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Busca Sequencial}
-    \begin{center}
-        \begin{table}
-            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
-                \hline
-                31 & 16 & 45 & 87 & 37 & 99 & 21 & 43 & 10 & 48 \\ \hline
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                & & & \color{red}{$\uparrow$} & & & & & &
-            \end{tabular}
-        \end{table}
-
-        $87 == 87$ ? Sim
-
-        \Large Encontrado!
-	\end{center}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Busca Sequencial}
-    \centering
-    \lstinputlisting[language=Java]{src/sequencial.java}
-\end{frame}
-
-\begin{frame}
-    \begin{center}
-        \Large Existe uma maneira mais eficiente de buscar um elemento?
-	\end{center}
-\end{frame}
-
-\section{Busca Binária}
-
-\begin{frame}
-    \frametitle{Busca Binária}
-    \begin{itemize}
-        \item O vetor precisa estar ordenado, caso contrário o método não funciona.
-        \item Esse é o algoritmo de Busca Binária
-    \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Busca Binária}
-    \begin{center}
-        \begin{table}
-            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
-                \hline
-                10 & 16 & 21 & 31 & 37 & 43 & 45 & 48 & 87 & 99 \\ \hline
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                & & & & & & & & &
-            \end{tabular}
-        \end{table}
-	\end{center}
-    \begin{itemize}[<+->]
-        \item Agora com o vetor ordenado.
-        \item Qual o algoritmo para encontrar o número 87?
-        \item Dado que o vetor tem 10 posições.
-    \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Busca Binária}
-    \begin{center}
-        \begin{table}
-            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
-                \hline
-                10 & 16 & 21 & 31 & 37 & 43 & 45 & 48 & 87 & 99 \\ \hline
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                & & & & & & & & &
-            \end{tabular}
-        \end{table}
-	\end{center}
-    \begin{itemize}[<+->]
-        \item Primeiro armazena o valor da posição inicial (inicio = 0)
-        \item Depois, armazena o valor da posição final (fim = 9)
-        \item Encontrar o valor de posição central (centro = (inicio+9)/2)
-        \item Compare se o valor armazenado com o procurado:
-            \begin{itemize}
-                \item Caso encontrado, retorne a posicao
-                \item Caso valor procurado seja maior inicio = centro + 1
-                \item Caso valor procurado seja menor fim = centro - 1
-            \end{itemize}
-    \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Busca Binária}
-    \begin{center}
-        \begin{table}
-            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
-                \hline
-                10 & 16 & 21 & 31 & 37 & 43 & 45 & 48 & 87 & 99 \\ \hline
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                & & & & \color{red}{$\uparrow$} & & & & &
-            \end{tabular}
-        \end{table}
-	\end{center}
-    \begin{itemize}[<+->]
-        \item $centro = (0 + 9) / 2 \rightarrow centro = 4.5 \rightarrow centro = 4$
-        \item $37 == 87$ ? Não
-        \item $37 < 87$ ? Sim $\rightarrow inicio = centro + 1 \rightarrow inicio = 5$
-    \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Busca Binária}
-    \begin{center}
-        \begin{table}
-            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
-                \hline
-                10 & 16 & 21 & 31 & 37 & 43 & 45 & 48 & 87 & 99 \\ \hline
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                & & & & \color{blue}{$\uparrow$} & & & \color{red}{$\uparrow$} & &
-            \end{tabular}
-        \end{table}
-	\end{center}
-    \begin{itemize}[<+->]
-        \item $centro = (5 + 9) / 2 \rightarrow centro = 7$
-        \item $48 == 87$ ? Não
-        \item $48 < 87$ ? Sim $\rightarrow inicio = centro + 1 \rightarrow inicio = 8$
-    \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Busca Binária}
-    \begin{center}
-        \begin{table}
-            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
-                \hline
-                10 & 16 & 21 & 31 & 37 & 43 & 45 & 48 & 87 & 99 \\ \hline
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                & & & & \color{blue}{$\uparrow$} & & & \color{blue}{$\uparrow$} & \color{red}{$\uparrow$} &
-            \end{tabular}
-        \end{table}
-	\end{center}
-    \begin{itemize}[<+->]
-        \item $centro = (8 + 9) / 2 \rightarrow centro = 8.5 \rightarrow centro = 8$
-        \item $87 == 87$ ? Sim
-    \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Busca Binária}
-    \begin{center}
-        \begin{table}
-            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
-                \hline
-                10 & 16 & 21 & 31 & 37 & 43 & 45 & 48 & 87 & 99 \\ \hline
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                & & & & \color{blue}{$\uparrow$} & & & \color{blue}{$\uparrow$} & \color{red}{$\uparrow$} &
-            \end{tabular}
-        \end{table}
-	\end{center}
-    \begin{itemize}
-        \item $centro = (8 + 9) / 2 \rightarrow centro = 8.5 \rightarrow centro = 8$
-        \item $87 == 87$ ? Sim
-    \end{itemize}
-    \begin{center}
-        \Large Encontrado
-    \end{center}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Busca Binária}
-    \centering
-    \lstinputlisting[language=Java]{src/binaria.java}
-\end{frame}
-
-\section{Busca Sequencial vs. Busca Binária}
-
-\begin{frame}
-	\frametitle{Busca Sequencial vs. Busca Binária}
-    \begin{itemize}
-        \item Busca Sequencial é $O(n)$
-        \item Busca Binária é $O(\log_2 n)$
-        \item Busca Binária é mais rápida na Sequencial, porém precisa dos dados ordenados
-        \item Para ordernar os dados existem vários métodos
-    \end{itemize}
-\end{frame}
-
-\section{BubbleSort}
-
-\begin{frame}
-	\frametitle{BubbleSort}
-    \begin{itemize}[<+->]
-        \item Existem diversos tipos de métodos para ordenar os dados
-        \item A complexidade deles tem a variação de $O(n\log_2 n)$ até $O(n^2)$
-        \item O mais fácil de implementar é o BubbleSort
-        \item Porém a complexidade dele é $O(n^2)$
-    \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{BubbleSort}
+    \frametitle{Selection Sort}
     \begin{center}
         \LARGE{Vamos ordernar este vetor!}
     \end{center}
     \begin{center}
         \begin{table}
-            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
                 \hline
-                31 & 16 & 45 & 87 & 37 & 99 & 21 & 43 & 10 & 48 \\ \hline
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                & & & & & & & & &
+                20 & 4 & 15 & 7 & 10 \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & & & &
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & & & &
             \end{tabular}
         \end{table}
 	\end{center}
 \end{frame}
 
 \begin{frame}
-    \frametitle{BubbleSort}
+    \frametitle{Selection Sort}
     \begin{center}
         \begin{table}
-            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
                 \hline
-                31 & 16 & 45 & 87 & 37 & 99 & 21 & 43 & 10 & 48 \\ \hline
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                \color{red}{$\uparrow$} & \color{blue}{$\uparrow$} & & & & & & & &
+                20 & 4 & 15 & 7 & 10 \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                \color{blue}{$\uparrow$} & \color{red}{$\uparrow$} & & &
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                \color{blue}{i} & \color{red}{j} & & &
             \end{tabular}
         \end{table}
 	\end{center}
+    \color{green}{$troca = 0$}
     \begin{itemize}[<+->]
-        \item $31 > 16$ ? Sim
-        \item Então troca
+        \item inicializa $i = 0$; $j = i + 1$;
+        \item $20 > 4$ ? Sim
+        \item $troca = j$
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{BubbleSort}
+    \frametitle{Selection Sort}
     \begin{center}
         \begin{table}
-            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
                 \hline
-                16 & 31 & 45 & 87 & 37 & 99 & 21 & 43 & 10 & 48 \\ \hline
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                & \color{blue}{$\uparrow$} & \color{red}{$\uparrow$} & & & & & & &
+                20 & 4 & 15 & 7 & 10 \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                \color{blue}{$\uparrow$} & & \color{red}{$\uparrow$} & &
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                \color{blue}{i} & & \color{red}{j} & &
             \end{tabular}
         \end{table}
 	\end{center}
+    \color{green}{$troca = 1$}
     \begin{itemize}[<+->]
-        \item $31 > 45$ ? Não
-        \item Então não troca
+        \item $j = j + 1$;
+        \item $4 > 15$ ? Não
+        \item próximo
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{BubbleSort}
+    \frametitle{Selection Sort}
     \begin{center}
         \begin{table}
-            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
                 \hline
-                16 & 31 & 45 & 87 & 37 & 99 & 21 & 43 & 10 & 48 \\ \hline
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                & & \color{red}{$\uparrow$} & \color{blue}{$\uparrow$} & & & & & &
+                20 & 4 & 15 & 7 & 10 \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                \color{blue}{$\uparrow$} & & & \color{red}{$\uparrow$} &
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                \color{blue}{i} & & & \color{red}{j} &
             \end{tabular}
         \end{table}
 	\end{center}
+    \color{green}{$troca = 1$}
     \begin{itemize}[<+->]
-        \item $45 > 87$ ? Não
-        \item Então não troca
+        \item $j = j + 1$;
+        \item $4 > 10$ ? Não
+        \item próximo
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{BubbleSort}
+    \frametitle{Selection Sort}
     \begin{center}
         \begin{table}
-            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
                 \hline
-                16 & 31 & 45 & 87 & 37 & 99 & 21 & 43 & 10 & 48 \\ \hline
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                & & & \color{blue}{$\uparrow$} & \color{red}{$\uparrow$} & & & & &
+                20 & 4 & 15 & 7 & 10 \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                \color{blue}{$\uparrow$} & & & & \color{red}{$\uparrow$}
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                \color{blue}{i} & & & &\color{red}{j}
             \end{tabular}
         \end{table}
 	\end{center}
+    \color{green}{$troca = 1$}
     \begin{itemize}[<+->]
-        \item $87 > 37$ ? Sim
-        \item Então troca
+        \item finalizou o vetor
+        \item $swap(vetor[i], vetor[troca])$
+        \item $i = i + 1$; $j = i + 1$; $troca = i$
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{BubbleSort}
+    \frametitle{Selection Sort}
     \begin{center}
         \begin{table}
-            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
                 \hline
-                16 & 31 & 45 & 37 & 87 & 99 & 21 & 43 & 10 & 48 \\ \hline
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                & & & & \color{red}{$\uparrow$} & \color{blue}{$\uparrow$} & & & &
+                4 & 20 & 15 & 7 & 10 \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                 & \color{blue}{$\uparrow$} & \color{red}{$\uparrow$} & &
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                 & \color{blue}{i} & \color{red}{j} & &
             \end{tabular}
         \end{table}
 	\end{center}
+    \color{green}{$troca = 1$}
     \begin{itemize}[<+->]
-        \item $87 > 99$ ? Não
-        \item Então não troca
+        \item $20 > 15$ ? Sim
+        \item $troca = j$
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{BubbleSort}
+    \frametitle{Selection Sort}
     \begin{center}
         \begin{table}
-            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
                 \hline
-                16 & 31 & 45 & 37 & 87 & 99 & 21 & 43 & 10 & 48 \\ \hline
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                & & & & & \color{blue}{$\uparrow$} & \color{red}{$\uparrow$} & & &
+                4 & 20 & 15 & 7 & 10 \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                 & \color{blue}{$\uparrow$} & & \color{red}{$\uparrow$} &
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                 & \color{blue}{i} & & \color{red}{j} &
             \end{tabular}
         \end{table}
 	\end{center}
+    \color{green}{$troca = 2$}
     \begin{itemize}[<+->]
-        \item $99 > 21$ ? Sim
-        \item Então troca
+        \item $j = j + 1$;
+        \item $15 > 7$ ? Sim
+        \item $troca = j$
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{BubbleSort}
+    \frametitle{Selection Sort}
     \begin{center}
         \begin{table}
-            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
                 \hline
-                16 & 31 & 45 & 37 & 87 & 21 & 99 & 43 & 10 & 48 \\ \hline
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                & & & & & & \color{red}{$\uparrow$} & \color{blue}{$\uparrow$} & &
+                4 & 20 & 15 & 7 & 10 \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                 & \color{blue}{$\uparrow$} & & & \color{red}{$\uparrow$}
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                 & \color{blue}{i} & & & \color{red}{j}
             \end{tabular}
         \end{table}
 	\end{center}
+    \color{green}{$troca = 3$}
     \begin{itemize}[<+->]
-        \item $99 > 43$ ? Sim
-        \item Então troca
+        \item $j = j + 1$;
+        \item $7 > 10$ ? Não
+        \item próximo
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{BubbleSort}
+    \frametitle{Selection Sort}
     \begin{center}
         \begin{table}
-            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
                 \hline
-                16 & 31 & 45 & 37 & 87 & 21 & 43 & 99 & 10 & 48 \\ \hline
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                & & & & & & & \color{blue}{$\uparrow$} & \color{red}{$\uparrow$} &
+                4 & 20 & 15 & 7 & 10 \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                 & \color{blue}{$\uparrow$} & & & \color{red}{$\uparrow$}
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                 & \color{blue}{i} & & & \color{red}{j}
             \end{tabular}
         \end{table}
 	\end{center}
+    \color{green}{$troca = 3$}
     \begin{itemize}[<+->]
-        \item $99 > 10$ ? Sim
-        \item Então troca
+        \item finalizou o vetor
+        \item $swap(vetor[i], vetor[troca])$
+        \item $i = i + 1$; $j = i + 1$; $troca = i$
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{BubbleSort}
+    \frametitle{Selection Sort}
     \begin{center}
         \begin{table}
-            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
                 \hline
-                16 & 31 & 45 & 37 & 87 & 21 & 43 & 10 & 99 & 48 \\ \hline
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                & & & & & & & & \color{red}{$\uparrow$} & \color{blue}{$\uparrow$}
+                4 & 7 & 15 & 20 & 10 \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                 & & \color{blue}{$\uparrow$} & \color{red}{$\uparrow$}  &
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                 & & \color{blue}{i} & \color{red}{j}  &
             \end{tabular}
         \end{table}
 	\end{center}
+    \color{green}{$troca = 2$}
     \begin{itemize}[<+->]
-        \item $99 > 48$ ? Sim
-        \item Então troca
+        \item $15 > 20$ ? Não
+        \item próximo
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{BubbleSort}
+    \frametitle{Selection Sort}
     \begin{center}
         \begin{table}
-            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
                 \hline
-                16 & 31 & 45 & 37 & 87 & 21 & 43 & 10 & 48 & 99 \\ \hline
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                & & & & & & & & & \color{red}{$\uparrow$}
+                4 & 7 & 15 & 20 & 10 \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                 & & \color{blue}{$\uparrow$} & & \color{red}{$\uparrow$}
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                 & & \color{blue}{i} & & \color{red}{j}
             \end{tabular}
         \end{table}
 	\end{center}
-    \begin{itemize}
-        \item $99$ se mantém na última posição do vetor, pois está ordenado
+    \color{green}{$troca = 2$}
+    \begin{itemize}[<+->]
+        \item $j = j + 1$;
+        \item $15 > 10$ ? Sim
+        \item $troca = j$
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{BubbleSort}
-    \begin{itemize}
-        \item O processo deve ser repetido até a ordenação completa do vetor
-    \end{itemize}
+    \frametitle{Selection Sort}
     \begin{center}
         \begin{table}
-            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
                 \hline
-                10 & 16 & 21 & 31 & 37 & 43 & 45 & 48 & 87 & 99 \\ \hline
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
-            \end{tabular}
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                & & & & & & & & &
+                4 & 7 & 15 & 20 & 10 \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                 & & \color{blue}{$\uparrow$} & & \color{red}{$\uparrow$}
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                 & & \color{blue}{i} & & \color{red}{j}
             \end{tabular}
         \end{table}
 	\end{center}
+    \color{green}{$troca = 4$}
+    \begin{itemize}[<+->]
+        \item finalizou o vetor
+        \item $swap(vetor[i], vetor[troca])$
+        \item $i = i + 1$; $j = i + 1$; $troca = i$
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
-	\frametitle{BubbleSort}
+    \frametitle{Selection Sort}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                4 & 7 & 10 & 20 & 15 \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                 & & & \color{blue}{$\uparrow$} & \color{red}{$\uparrow$}
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                 & & & \color{blue}{i} & \color{red}{j}
+            \end{tabular}
+        \end{table}
+	\end{center}
+    \color{green}{$troca = 3$}
+    \begin{itemize}[<+->]
+        \item $20 > 15$ ? Sim
+        \item $troca = j$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Selection Sort}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                4 & 7 & 10 & 20 & 15 \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                 & & & \color{blue}{$\uparrow$} & \color{red}{$\uparrow$}
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                 & & & \color{blue}{i} & \color{red}{j}
+            \end{tabular}
+        \end{table}
+	\end{center}
+    \color{green}{$troca = 4$}
+    \begin{itemize}[<+->]
+        \item finalizou o vetor
+        \item $swap(vetor[i], vetor[troca])$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Selection Sort}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                4 & 7 & 10 & 15 & 20 \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                 & & & &
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                 & & & &
+            \end{tabular}
+        \end{table}
+	\end{center}
+    \color{green}{Vetor Ordenado}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Selection Sort}
     \centering
-    \lstinputlisting[language=Java]{src/bubblesort.java}
+    \lstinputlisting[language=Java]{src/selection.java}
+\end{frame}
+
+\section{Insertion Sort}
+
+\begin{frame}
+	\frametitle{Insertion Sort}
+    \begin{itemize}[<+->]
+        \item Utilizando um vetor auxiliar;
+        \item Os elementos são inseridos na posição correta;
+        \item Complexidade dele: $O(n^2)$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Insertion Sort}
+    \begin{center}
+        \LARGE{Vamos ordernar este vetor!}
+    \end{center}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4
+            \end{tabular} \\
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                20 & 4 & 15 & 7 & 10 \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & & & &
+            \end{tabular} \\
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                 & & & & \\ \hline
+            \end{tabular}
+        \end{table}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Insertion Sort}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4
+            \end{tabular} \\
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                20 & 4 & 15 & 7 & 10 \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                \color{blue}{$\updownarrow$} & & & &
+            \end{tabular} \\
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                20 & & & & \\ \hline
+            \end{tabular}
+        \end{table}
+	\end{center}
+    \begin{itemize}[<+->]
+        \item inicializa $i = 0$;
+        \item copia o $vetor[i]$ para a posição 0 do vetor auxiliar
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Insertion Sort}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4
+            \end{tabular} \\
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                20 & 4 & 15 & 7 & 10 \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & \color{blue}{$\updownarrow$} & & &
+            \end{tabular} \\
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                20 & 4 & & & \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                \color{red}{$\uparrow$} & \color{blue}{$\uparrow$} & & &
+            \end{tabular}
+        \end{table}
+	\end{center}
+    \begin{itemize}[<+->]
+        \item $i = i + 1$; inicializa $j = i - 1$
+        \item $4 < 20$ ? Sim
+        \item $j = j - 1$
+        \item acabou vetor
+        \item $swap(vetor[i], vetor[j + 1])$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Insertion Sort}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4
+            \end{tabular} \\
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                20 & 4 & 15 & 7 & 10 \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & & \color{blue}{$\updownarrow$} & &
+            \end{tabular} \\
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                4 & 20 & 15 & & \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & \color{red}{$\uparrow$}  & \color{blue}{$\uparrow$} & &
+            \end{tabular}
+        \end{table}
+	\end{center}
+    \begin{itemize}[<+->]
+        \item $i = i + 1$; inicializa $j = i - 1$
+        \item $15 < 20$ ? Sim
+        \item $j = j - 1$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Insertion Sort}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4
+            \end{tabular} \\
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                20 & 4 & 15 & 7 & 10 \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & & \color{blue}{$\updownarrow$} & &
+            \end{tabular} \\
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                4 & 20 & 15 & & \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                 \color{red}{$\uparrow$} & & \color{blue}{$\uparrow$} & &
+            \end{tabular}
+        \end{table}
+	\end{center}
+    \begin{itemize}[<+->]
+        \item $15 < 4$ ? Não
+        \item $j = j - 1$
+        \item acabou vetor
+        \item $swap(vetor[i], vetor[j + 1])$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Insertion Sort}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4
+            \end{tabular} \\
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                20 & 4 & 15 & 7 & 10 \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & & & \color{blue}{$\updownarrow$} &
+            \end{tabular} \\
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                4 & 15 & 20 & 7 & \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & & \color{red}{$\uparrow$}  & \color{blue}{$\uparrow$} &
+            \end{tabular}
+        \end{table}
+	\end{center}
+    \begin{itemize}[<+->]
+        \item $i = i + 1$; inicializa $j = i - 1$
+        \item $7 < 20$ ? Sim
+        \item $j = j - 1$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Insertion Sort}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4
+            \end{tabular} \\
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                20 & 4 & 15 & 7 & 10 \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & & & \color{blue}{$\updownarrow$} &
+            \end{tabular} \\
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                4 & 15 & 20 & 7 & \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & \color{red}{$\uparrow$} & & \color{blue}{$\uparrow$} &
+            \end{tabular}
+        \end{table}
+	\end{center}
+    \begin{itemize}[<+->]
+        \item $7 < 15$ ? Sim
+        \item $j = j - 1$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Insertion Sort}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4
+            \end{tabular} \\
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                20 & 4 & 15 & 7 & 10 \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & & & \color{blue}{$\updownarrow$} &
+            \end{tabular} \\
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                4 & 15 & 20 & 7 & \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                 \color{red}{$\uparrow$} & & & \color{blue}{$\uparrow$} &
+            \end{tabular}
+        \end{table}
+	\end{center}
+    \begin{itemize}[<+->]
+        \item $7 < 4$ ? Não
+        \item $j = j - 1$
+        \item acabou vetor
+        \item $swap(vetor[i], vetor[j + 1])$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Insertion Sort}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4
+            \end{tabular} \\
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                20 & 4 & 15 & 7 & 10 \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & & & & \color{blue}{$\updownarrow$}
+            \end{tabular} \\
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                4 & 7 & 15 & 20 & 10 \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & & & \color{red}{$\uparrow$} & \color{blue}{$\uparrow$}
+            \end{tabular}
+        \end{table}
+	\end{center}
+    \begin{itemize}[<+->]
+        \item $i = i + 1$; inicializa $j = i - 1$
+        \item $10 < 20$ ? Sim
+        \item $j = j - 1$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Insertion Sort}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4
+            \end{tabular} \\
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                20 & 4 & 15 & 7 & 10 \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & & & & \color{blue}{$\updownarrow$}
+            \end{tabular} \\
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                4 & 7 & 15 & 20 & 10 \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & & \color{red}{$\uparrow$} & & \color{blue}{$\uparrow$}
+            \end{tabular}
+        \end{table}
+	\end{center}
+    \begin{itemize}[<+->]
+        \item $10 < 15$ ? Sim
+        \item $j = j - 1$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Insertion Sort}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4
+            \end{tabular} \\
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                20 & 4 & 15 & 7 & 10 \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & & & & \color{blue}{$\updownarrow$}
+            \end{tabular} \\
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                4 & 7 & 15 & 20 & 10 \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & \color{red}{$\uparrow$} & & & \color{blue}{$\uparrow$}
+            \end{tabular}
+        \end{table}
+	\end{center}
+    \begin{itemize}[<+->]
+        \item $10 < 7$ ? Não
+        \item $j = j - 1$
+        \item acabou vetor, pois não a partir daqui está ordenado.
+        \item $swap(vetor[i], vetor[j + 1])$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Insertion Sort}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4
+            \end{tabular} \\
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                20 & 4 & 15 & 7 & 10 \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & & & &
+            \end{tabular} \\
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                4 & 7 & 10 & 15 & 20 \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & & & &
+            \end{tabular}
+        \end{table}
+	\end{center}
+    \color{green}{Acabou! Vetor Auxiliar Ordenado!}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Insertion Sort}
+    \centering
+    \lstinputlisting[language=Java]{src/insertion.java}
 \end{frame}
 
 \section{Exercícios}
@@ -627,9 +834,8 @@
 \begin{frame}
     \frametitle{Exercícios}
     \begin{enumerate}
-        \item Implemente o método de Busca Sequencial.
-        \item Implemente o método de Busca Binária.
-        \item Implemente o método de ordenação BubbleSort.
+        \item Implemente o método de ordenação Selection Sort.
+        \item Implemente o método de ordenação Insertion Sort.
         \item Teste todos os algoritmos em um algoritmo principal
     \end{enumerate}
 \end{frame}
