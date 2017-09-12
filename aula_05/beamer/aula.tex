@@ -1,0 +1,648 @@
+\documentclass{beamer}
+
+\usepackage{amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage[export]{adjustbox}
+\usepackage{listings}
+\usepackage{fontspec}
+\usepackage{color}
+
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\definecolor{pred}{rgb}{0.9,0,0}
+\definecolor{pgrey}{rgb}{0.46,0.45,0.48}
+
+\lstset{language=Java,
+  showspaces=false,
+  showtabs=false,
+  breaklines=true,
+  showstringspaces=false,
+  breakatwhitespace=true,
+  commentstyle=\color{pgreen},
+  keywordstyle=\color{pblue},
+  stringstyle=\color{pred},
+  basicstyle=\ttfamily,
+}
+
+
+\usetheme{Madrid}
+\usecolortheme{beetle}
+\usefonttheme{professionalfonts}
+
+\setmainfont{Oswald}
+
+\lstset{basicstyle=\ttfamily,breaklines=true}
+\beamertemplatenavigationsymbolsempty
+
+\begin{document}
+
+\selectlanguage{brazil}
+\title[Buscas e BubbleSort]{Busca Sequencial, Busca Binária e Ordenação BubbleSort}
+\author{Prof. Andrey Masiero}
+
+\begin{frame}[plain,noframenumbering]
+  \titlepage
+\end{frame}
+
+\begin{frame}[plain,noframenumbering]
+  \frametitle{Agenda}
+  \tableofcontents
+\end{frame}
+
+\section{Busca Sequencial}
+
+\begin{frame}
+    \frametitle{Busca Sequencial}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                31 & 16 & 45 & 87 & 37 & 99 & 21 & 43 & 10 & 48 \\ \hline
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & & & & & & & & &
+            \end{tabular}
+        \end{table}
+	\end{center}
+    \begin{itemize}[<+->]
+        \item Qual o algoritmo para encontrar o número 87?
+        \item Dado que o vetor tem 10 posições.
+        \item Pode-se ser feito uma busca sequencial.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Busca Sequencial}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                31 & 16 & 45 & 87 & 37 & 99 & 21 & 43 & 10 & 48 \\ \hline
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                \color{red}{$\uparrow$} & & & & & & & & &
+            \end{tabular}
+        \end{table}
+
+        $31 == 87$ ? Não
+	\end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Busca Sequencial}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                31 & 16 & 45 & 87 & 37 & 99 & 21 & 43 & 10 & 48 \\ \hline
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                 & \color{red}{$\uparrow$} & & & & & & & &
+            \end{tabular}
+        \end{table}
+
+        $16 == 87$ ? Não
+	\end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Busca Sequencial}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                31 & 16 & 45 & 87 & 37 & 99 & 21 & 43 & 10 & 48 \\ \hline
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & & \color{red}{$\uparrow$} & & & & & & &
+            \end{tabular}
+        \end{table}
+
+        $45 == 87$ ? Não
+	\end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Busca Sequencial}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                31 & 16 & 45 & 87 & 37 & 99 & 21 & 43 & 10 & 48 \\ \hline
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & & & \color{red}{$\uparrow$} & & & & & &
+            \end{tabular}
+        \end{table}
+
+        $87 == 87$ ? Sim
+
+        \Large Encontrado!
+	\end{center}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Busca Sequencial}
+    \centering
+    \lstinputlisting[language=Java]{src/sequencial.java}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        \Large Existe uma maneira mais eficiente de buscar um elemento?
+	\end{center}
+\end{frame}
+
+\section{Busca Binária}
+
+\begin{frame}
+    \frametitle{Busca Binária}
+    \begin{itemize}
+        \item O vetor precisa estar ordenado, caso contrário o método não funciona.
+        \item Esse é o algoritmo de Busca Binária
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Busca Binária}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                10 & 16 & 21 & 31 & 37 & 43 & 45 & 48 & 87 & 99 \\ \hline
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & & & & & & & & &
+            \end{tabular}
+        \end{table}
+	\end{center}
+    \begin{itemize}[<+->]
+        \item Agora com o vetor ordenado.
+        \item Qual o algoritmo para encontrar o número 87?
+        \item Dado que o vetor tem 10 posições.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Busca Binária}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                10 & 16 & 21 & 31 & 37 & 43 & 45 & 48 & 87 & 99 \\ \hline
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & & & & & & & & &
+            \end{tabular}
+        \end{table}
+	\end{center}
+    \begin{itemize}[<+->]
+        \item Primeiro armazena o valor da posição inicial (inicio = 0)
+        \item Depois, armazena o valor da posição final (fim = 9)
+        \item Encontrar o valor de posição central (centro = (inicio+9)/2)
+        \item Compare se o valor armazenado com o procurado:
+            \begin{itemize}
+                \item Caso encontrado, retorne a posicao
+                \item Caso valor procurado seja maior inicio = centro + 1
+                \item Caso valor procurado seja menor fim = centro - 1
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Busca Binária}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                10 & 16 & 21 & 31 & 37 & 43 & 45 & 48 & 87 & 99 \\ \hline
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & & & & \color{red}{$\uparrow$} & & & & &
+            \end{tabular}
+        \end{table}
+	\end{center}
+    \begin{itemize}[<+->]
+        \item $centro = (0 + 9) / 2 \rightarrow centro = 4.5 \rightarrow centro = 4$
+        \item $37 == 87$ ? Não
+        \item $37 < 87$ ? Sim $\rightarrow inicio = centro + 1 \rightarrow inicio = 5$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Busca Binária}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                10 & 16 & 21 & 31 & 37 & 43 & 45 & 48 & 87 & 99 \\ \hline
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & & & & \color{blue}{$\uparrow$} & & & \color{red}{$\uparrow$} & &
+            \end{tabular}
+        \end{table}
+	\end{center}
+    \begin{itemize}[<+->]
+        \item $centro = (5 + 9) / 2 \rightarrow centro = 7$
+        \item $48 == 87$ ? Não
+        \item $48 < 87$ ? Sim $\rightarrow inicio = centro + 1 \rightarrow inicio = 8$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Busca Binária}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                10 & 16 & 21 & 31 & 37 & 43 & 45 & 48 & 87 & 99 \\ \hline
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & & & & \color{blue}{$\uparrow$} & & & \color{blue}{$\uparrow$} & \color{red}{$\uparrow$} &
+            \end{tabular}
+        \end{table}
+	\end{center}
+    \begin{itemize}[<+->]
+        \item $centro = (8 + 9) / 2 \rightarrow centro = 8.5 \rightarrow centro = 8$
+        \item $87 == 87$ ? Sim
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Busca Binária}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                10 & 16 & 21 & 31 & 37 & 43 & 45 & 48 & 87 & 99 \\ \hline
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & & & & \color{blue}{$\uparrow$} & & & \color{blue}{$\uparrow$} & \color{red}{$\uparrow$} &
+            \end{tabular}
+        \end{table}
+	\end{center}
+    \begin{itemize}
+        \item $centro = (8 + 9) / 2 \rightarrow centro = 8.5 \rightarrow centro = 8$
+        \item $87 == 87$ ? Sim
+    \end{itemize}
+    \begin{center}
+        \Large Encontrado
+    \end{center}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Busca Binária}
+    \centering
+    \lstinputlisting[language=Java]{src/binaria.java}
+\end{frame}
+
+\section{Busca Sequencial vs. Busca Binária}
+
+\begin{frame}
+	\frametitle{Busca Sequencial vs. Busca Binária}
+    \begin{itemize}
+        \item Busca Sequencial é $O(n)$
+        \item Busca Binária é $O(\log_2 n)$
+        \item Busca Binária é mais rápida na Sequencial, porém precisa dos dados ordenados
+        \item Para ordernar os dados existem vários métodos
+    \end{itemize}
+\end{frame}
+
+\section{BubbleSort}
+
+\begin{frame}
+	\frametitle{BubbleSort}
+    \begin{itemize}[<+->]
+        \item Existem diversos tipos de métodos para ordenar os dados
+        \item A complexidade deles tem a variação de $O(n\log_2 n)$ até $O(n^2)$
+        \item O mais fácil de implementar é o BubbleSort
+        \item Porém a complexidade dele é $O(n^2)$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{BubbleSort}
+    \begin{center}
+        \LARGE{Vamos ordernar este vetor!}
+    \end{center}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                31 & 16 & 45 & 87 & 37 & 99 & 21 & 43 & 10 & 48 \\ \hline
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & & & & & & & & &
+            \end{tabular}
+        \end{table}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{BubbleSort}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                31 & 16 & 45 & 87 & 37 & 99 & 21 & 43 & 10 & 48 \\ \hline
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                \color{red}{$\uparrow$} & \color{blue}{$\uparrow$} & & & & & & & &
+            \end{tabular}
+        \end{table}
+	\end{center}
+    \begin{itemize}[<+->]
+        \item $31 > 16$ ? Sim
+        \item Então troca
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{BubbleSort}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                16 & 31 & 45 & 87 & 37 & 99 & 21 & 43 & 10 & 48 \\ \hline
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & \color{blue}{$\uparrow$} & \color{red}{$\uparrow$} & & & & & & &
+            \end{tabular}
+        \end{table}
+	\end{center}
+    \begin{itemize}[<+->]
+        \item $31 > 45$ ? Não
+        \item Então não troca
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{BubbleSort}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                16 & 31 & 45 & 87 & 37 & 99 & 21 & 43 & 10 & 48 \\ \hline
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & & \color{red}{$\uparrow$} & \color{blue}{$\uparrow$} & & & & & &
+            \end{tabular}
+        \end{table}
+	\end{center}
+    \begin{itemize}[<+->]
+        \item $45 > 87$ ? Não
+        \item Então não troca
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{BubbleSort}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                16 & 31 & 45 & 87 & 37 & 99 & 21 & 43 & 10 & 48 \\ \hline
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & & & \color{blue}{$\uparrow$} & \color{red}{$\uparrow$} & & & & &
+            \end{tabular}
+        \end{table}
+	\end{center}
+    \begin{itemize}[<+->]
+        \item $87 > 37$ ? Sim
+        \item Então troca
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{BubbleSort}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                16 & 31 & 45 & 37 & 87 & 99 & 21 & 43 & 10 & 48 \\ \hline
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & & & & \color{red}{$\uparrow$} & \color{blue}{$\uparrow$} & & & &
+            \end{tabular}
+        \end{table}
+	\end{center}
+    \begin{itemize}[<+->]
+        \item $87 > 99$ ? Não
+        \item Então não troca
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{BubbleSort}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                16 & 31 & 45 & 37 & 87 & 99 & 21 & 43 & 10 & 48 \\ \hline
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & & & & & \color{blue}{$\uparrow$} & \color{red}{$\uparrow$} & & &
+            \end{tabular}
+        \end{table}
+	\end{center}
+    \begin{itemize}[<+->]
+        \item $99 > 21$ ? Sim
+        \item Então troca
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{BubbleSort}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                16 & 31 & 45 & 37 & 87 & 21 & 99 & 43 & 10 & 48 \\ \hline
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & & & & & & \color{red}{$\uparrow$} & \color{blue}{$\uparrow$} & &
+            \end{tabular}
+        \end{table}
+	\end{center}
+    \begin{itemize}[<+->]
+        \item $99 > 43$ ? Sim
+        \item Então troca
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{BubbleSort}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                16 & 31 & 45 & 37 & 87 & 21 & 43 & 99 & 10 & 48 \\ \hline
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & & & & & & & \color{blue}{$\uparrow$} & \color{red}{$\uparrow$} &
+            \end{tabular}
+        \end{table}
+	\end{center}
+    \begin{itemize}[<+->]
+        \item $99 > 10$ ? Sim
+        \item Então troca
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{BubbleSort}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                16 & 31 & 45 & 37 & 87 & 21 & 43 & 10 & 99 & 48 \\ \hline
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & & & & & & & & \color{red}{$\uparrow$} & \color{blue}{$\uparrow$}
+            \end{tabular}
+        \end{table}
+	\end{center}
+    \begin{itemize}[<+->]
+        \item $99 > 48$ ? Sim
+        \item Então troca
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{BubbleSort}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                16 & 31 & 45 & 37 & 87 & 21 & 43 & 10 & 48 & 99 \\ \hline
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & & & & & & & & & \color{red}{$\uparrow$}
+            \end{tabular}
+        \end{table}
+	\end{center}
+    \begin{itemize}
+        \item $99$ se mantém na última posição do vetor, pois está ordenado
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{BubbleSort}
+    \begin{itemize}
+        \item O processo deve ser repetido até a ordenação completa do vetor
+    \end{itemize}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                10 & 16 & 21 & 31 & 37 & 43 & 45 & 48 & 87 & 99 \\ \hline
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9
+            \end{tabular}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & & & & & & & & &
+            \end{tabular}
+        \end{table}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+	\frametitle{BubbleSort}
+    \centering
+    \lstinputlisting[language=Java]{src/bubblesort.java}
+\end{frame}
+
+\section{Exercícios}
+
+\begin{frame}
+    \frametitle{Exercícios}
+    \begin{enumerate}
+        \item Implemente o método de Busca Sequencial.
+        \item Implemente o método de Busca Binária.
+        \item Implemente o método de ordenação BubbleSort.
+        \item Teste todos os algoritmos em um algoritmo principal
+    \end{enumerate}
+\end{frame}
+
+\section{Referências}
+
+\begin{frame}
+    \frametitle{Referências Bibliográficas}
+    \begin{enumerate}
+        \item Cormen, Thomas H., Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein. ``Introduction to algorithms second edition.'' (2001).
+        \item Tamassia, Roberto, and Michael T. Goodrich. ``Estrutura de Dados e Algoritmos em Java.'' Porto Alegre, Ed. Bookman 4 (2007).
+        \item Ascencio, Ana Fernanda Gomes, and Graziela Santos de Araújo. ``Estruturas de Dados: algoritmos, análise da complexidade e implementações em JAVA e C/C++.'' São Paulo: Perarson Prentice Halt 3 (2010).
+    \end{enumerate}
+\end{frame}
+
+\end{document}
