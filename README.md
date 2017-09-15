@@ -7,6 +7,7 @@ Neste repositório você encontra todo o material das aulas ministradas sobre al
 * [aula 03](aula_03): Complexidade de Algoritmos - [pdf](aula_03/beamer/aula.pdf)
 * [aula 04](aula_04): Buscas: Sequencial e Binária, Ordenação BubbleSort - [código fonte](aula_04/src) | [pdf](aula_04/beamer/aula.pdf)
 * [aula 05](aula_05): Ordenação: Selection Sort e Insertion Sort - [código fonte](aula_05/src) | [pdf](aula_05/beamer/aula.pdf)
+* [aula 06](aula_06): Recursão - [código fonte](aula_06/src) | [pdf](aula_06/beamer/aula.pdf)
 
 
 ## Opções de compilação

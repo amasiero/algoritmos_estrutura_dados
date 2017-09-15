@@ -163,6 +163,33 @@
     \color{green}{$troca = 1$}
     \begin{itemize}[<+->]
         \item $j = j + 1$;
+        \item $4 > 7$ ? Não
+        \item próximo
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Selection Sort}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                20 & 4 & 15 & 7 & 10 \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                \color{blue}{$\uparrow$} & & & & \color{red}{$\uparrow$}
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                \color{blue}{i} & & & & \color{red}{j}
+            \end{tabular}
+        \end{table}
+	\end{center}
+    \color{green}{$troca = 1$}
+    \begin{itemize}[<+->]
+        \item $j = j + 1$;
         \item $4 > 10$ ? Não
         \item próximo
     \end{itemize}
@@ -510,18 +537,22 @@
                 20 & 4 & 15 & 7 & 10 \\ \hline
             \end{tabular} \\
             \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                \color{blue}{$\updownarrow$} & & & &
+                \color{green}{$\uparrow$} & & & &
             \end{tabular} \\
             \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
                 \hline
                 20 & & & & \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                \color{red}{$\uparrow$} & & & &
             \end{tabular}
         \end{table}
 	\end{center}
+    \color{green}{$ordenando = 20$}
     \begin{itemize}[<+->]
-        \item inicializa $i = 0$;
-        \item copia o $vetor[i]$ para a posição 0 do vetor auxiliar
-    \end{itemize}
+        \item inicializa $i = 0$; inicializa $j = i -1$
+        \item $j = -1$ então copia $ordenando$ na posição $j + 1$
+     \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -536,23 +567,22 @@
                 20 & 4 & 15 & 7 & 10 \\ \hline
             \end{tabular} \\
             \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                & \color{blue}{$\updownarrow$} & & &
+                & \color{green}{$\uparrow$} & & &
             \end{tabular} \\
             \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
                 \hline
-                20 & 4 & & & \\ \hline
+                20 & & & & \\ \hline
             \end{tabular} \\
             \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
                 \color{red}{$\uparrow$} & \color{blue}{$\uparrow$} & & &
             \end{tabular}
         \end{table}
 	\end{center}
+    \color{green}{$ordenando = 4$}
     \begin{itemize}[<+->]
         \item $i = i + 1$; inicializa $j = i - 1$
         \item $4 < 20$ ? Sim
-        \item $j = j - 1$
-        \item acabou vetor
-        \item $swap(vetor[i], vetor[j + 1])$
+        \item copia $20$ para a posição $i$
     \end{itemize}
 \end{frame}
 
@@ -568,21 +598,53 @@
                 20 & 4 & 15 & 7 & 10 \\ \hline
             \end{tabular} \\
             \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                & & \color{blue}{$\updownarrow$} & &
+                & \color{green}{$\uparrow$} & & &
             \end{tabular} \\
             \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
                 \hline
-                4 & 20 & 15 & & \\ \hline
+                4 & 20 & & & \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                \color{red}{$\uparrow$} & \color{blue}{$\uparrow$} & & &
+            \end{tabular}
+        \end{table}
+	\end{center}
+    \color{green}{$ordenando = 4$}
+    \begin{itemize}[<+->]
+        \item $j = j - 1$
+        \item acabou vetor
+        \item copia $ordenando$ na posição $j + 1$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Insertion Sort}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4
+            \end{tabular} \\
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                20 & 4 & 15 & 7 & 10 \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & & \color{green}{$\uparrow$} & &
+            \end{tabular} \\
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                4 & 20 &  & & \\ \hline
             \end{tabular} \\
             \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
                 & \color{red}{$\uparrow$}  & \color{blue}{$\uparrow$} & &
             \end{tabular}
         \end{table}
 	\end{center}
+    \color{green}{$ordenando = 15$}
     \begin{itemize}[<+->]
-        \item $i = i + 1$; inicializa $j = i - 1$
+        \item $i = i + 1$; $j = i - 1$
         \item $15 < 20$ ? Sim
-        \item $j = j - 1$
+        \item copia $20$ para a posição $i$
     \end{itemize}
 \end{frame}
 
@@ -598,22 +660,22 @@
                 20 & 4 & 15 & 7 & 10 \\ \hline
             \end{tabular} \\
             \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                & & \color{blue}{$\updownarrow$} & &
+                & & \color{green}{$\uparrow$} & &
             \end{tabular} \\
             \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
                 \hline
-                4 & 20 & 15 & & \\ \hline
+                4 &  & 20 & & \\ \hline
             \end{tabular} \\
             \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                 \color{red}{$\uparrow$} & & \color{blue}{$\uparrow$} & &
+                \color{red}{$\uparrow$} & \color{blue}{$\uparrow$} & & &
             \end{tabular}
         \end{table}
 	\end{center}
+    \color{green}{$ordenando = 15$}
     \begin{itemize}[<+->]
-        \item $15 < 4$ ? Não
         \item $j = j - 1$
-        \item acabou vetor
-        \item $swap(vetor[i], vetor[j + 1])$
+        \item $15 < 4$ ? Não
+        \item acabou iteração
     \end{itemize}
 \end{frame}
 
@@ -629,21 +691,51 @@
                 20 & 4 & 15 & 7 & 10 \\ \hline
             \end{tabular} \\
             \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                & & & \color{blue}{$\updownarrow$} &
+                & & \color{green}{$\uparrow$} & &
             \end{tabular} \\
             \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
                 \hline
-                4 & 15 & 20 & 7 & \\ \hline
+                4 & 15 & 20 & & \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                 & \color{blue}{$\uparrow$} & & &
+            \end{tabular}
+        \end{table}
+	\end{center}
+    \color{green}{$ordenando = 15$}
+    \begin{itemize}[<+->]
+        \item copia $ordenando$ na posição $j + 1$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Insertion Sort}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4
+            \end{tabular} \\
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                20 & 4 & 15 & 7 & 10 \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & & & \color{green}{$\uparrow$} &
+            \end{tabular} \\
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                4 & 15 & 20 & & \\ \hline
             \end{tabular} \\
             \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
                 & & \color{red}{$\uparrow$}  & \color{blue}{$\uparrow$} &
             \end{tabular}
         \end{table}
 	\end{center}
+    \color{green}{$ordenando = 7$}
     \begin{itemize}[<+->]
-        \item $i = i + 1$; inicializa $j = i - 1$
+        \item $i = i + 1$; $j = i - 1$
         \item $7 < 20$ ? Sim
-        \item $j = j - 1$
+        \item copia $20$ para a posição $i$
     \end{itemize}
 \end{frame}
 
@@ -659,20 +751,22 @@
                 20 & 4 & 15 & 7 & 10 \\ \hline
             \end{tabular} \\
             \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                & & & \color{blue}{$\updownarrow$} &
+                & & & \color{green}{$\uparrow$} &
             \end{tabular} \\
             \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
                 \hline
-                4 & 15 & 20 & 7 & \\ \hline
+                4 & 15 & & 20 & \\ \hline
             \end{tabular} \\
             \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                & \color{red}{$\uparrow$} & & \color{blue}{$\uparrow$} &
+                & \color{red}{$\uparrow$} & \color{blue}{$\uparrow$} & &
             \end{tabular}
         \end{table}
 	\end{center}
+    \color{green}{$ordenando = 7$}
     \begin{itemize}[<+->]
+        \item $j = i - 1$
         \item $7 < 15$ ? Sim
-        \item $j = j - 1$
+        \item copia $15$ para a posição $i - 1$
     \end{itemize}
 \end{frame}
 
@@ -688,22 +782,22 @@
                 20 & 4 & 15 & 7 & 10 \\ \hline
             \end{tabular} \\
             \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                & & & \color{blue}{$\updownarrow$} &
+                & & & \color{green}{$\uparrow$} &
             \end{tabular} \\
             \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
                 \hline
-                4 & 15 & 20 & 7 & \\ \hline
+                4 & & 15 & 20 & \\ \hline
             \end{tabular} \\
             \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                 \color{red}{$\uparrow$} & & & \color{blue}{$\uparrow$} &
+                \color{red}{$\uparrow$} & \color{blue}{$\uparrow$} & & &
             \end{tabular}
         \end{table}
 	\end{center}
+    \color{green}{$ordenando = 7$}
     \begin{itemize}[<+->]
+        \item $j = i - 1$
         \item $7 < 4$ ? Não
-        \item $j = j - 1$
-        \item acabou vetor
-        \item $swap(vetor[i], vetor[j + 1])$
+        \item acabou iteração
     \end{itemize}
 \end{frame}
 
@@ -719,21 +813,51 @@
                 20 & 4 & 15 & 7 & 10 \\ \hline
             \end{tabular} \\
             \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                & & & & \color{blue}{$\updownarrow$}
+                & & & \color{green}{$\uparrow$} &
             \end{tabular} \\
             \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
                 \hline
-                4 & 7 & 15 & 20 & 10 \\ \hline
+                4 & 7 & 15 & 20 & \\ \hline
             \end{tabular} \\
             \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                & & & \color{red}{$\uparrow$} & \color{blue}{$\uparrow$}
+                & \color{blue}{$\uparrow$} &  & &
             \end{tabular}
         \end{table}
 	\end{center}
+    \color{green}{$ordenando = 7$}
     \begin{itemize}[<+->]
-        \item $i = i + 1$; inicializa $j = i - 1$
+        \item copia $ordenando$ na posição $j + 1$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Insertion Sort}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4
+            \end{tabular} \\
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                20 & 4 & 15 & 7 & 10 \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & & & & \color{green}{$\uparrow$}
+            \end{tabular} \\
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                4 & 7 & 15 & 20 & \\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & & & \color{red}{$\uparrow$}  & \color{blue}{$\uparrow$}
+            \end{tabular}
+        \end{table}
+	\end{center}
+    \color{green}{$ordenando = 10$}
+    \begin{itemize}[<+->]
+        \item $i = i + 1$; $j = i - 1$
         \item $10 < 20$ ? Sim
-        \item $j = j - 1$
+        \item copia $20$ para a posição $i$
     \end{itemize}
 \end{frame}
 
@@ -749,20 +873,22 @@
                 20 & 4 & 15 & 7 & 10 \\ \hline
             \end{tabular} \\
             \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                & & & & \color{blue}{$\updownarrow$}
+                & & & & \color{green}{$\uparrow$}
             \end{tabular} \\
             \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
                 \hline
-                4 & 7 & 15 & 20 & 10 \\ \hline
+                4 & 7 & 15 &  & 20 \\ \hline
             \end{tabular} \\
             \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                & & \color{red}{$\uparrow$} & & \color{blue}{$\uparrow$}
+                & & \color{red}{$\uparrow$} & \color{blue}{$\uparrow$} &
             \end{tabular}
         \end{table}
 	\end{center}
+    \color{green}{$ordenando = 10$}
     \begin{itemize}[<+->]
+        \item $j = i - 1$
         \item $10 < 15$ ? Sim
-        \item $j = j - 1$
+        \item copia $15$ para a posição $i - 1$
     \end{itemize}
 \end{frame}
 
@@ -778,22 +904,22 @@
                 20 & 4 & 15 & 7 & 10 \\ \hline
             \end{tabular} \\
             \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                & & & & \color{blue}{$\updownarrow$}
+                & & & & \color{green}{$\uparrow$}
             \end{tabular} \\
             \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
                 \hline
-                4 & 7 & 15 & 20 & 10 \\ \hline
+                4 & 7 & & 15 & 20 \\ \hline
             \end{tabular} \\
             \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                & \color{red}{$\uparrow$} & & & \color{blue}{$\uparrow$}
+                & \color{red}{$\uparrow$} & \color{blue}{$\uparrow$} & &
             \end{tabular}
         \end{table}
 	\end{center}
+    \color{green}{$ordenando = 10$}
     \begin{itemize}[<+->]
+        \item $j = i - 1$
         \item $10 < 7$ ? Não
-        \item $j = j - 1$
-        \item acabou vetor, pois não a partir daqui está ordenado.
-        \item $swap(vetor[i], vetor[j + 1])$
+        \item acabou iteração
     \end{itemize}
 \end{frame}
 
@@ -809,14 +935,33 @@
                 20 & 4 & 15 & 7 & 10 \\ \hline
             \end{tabular} \\
             \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                & & & &
+                & & & & \color{green}{$\uparrow$}
+            \end{tabular} \\
+            \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
+                \hline
+                4 & 7 & 10 & 15 & 20\\ \hline
+            \end{tabular} \\
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                & & \color{blue}{$\uparrow$} & &
+            \end{tabular}
+        \end{table}
+	\end{center}
+    \color{green}{$ordenando = 10$}
+    \begin{itemize}[<+->]
+        \item copia $ordenando$ na posição $j + 1$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Insertion Sort}
+    \begin{center}
+        \begin{table}
+            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
+                0 & 1 & 2 & 3 & 4
             \end{tabular} \\
             \begin{tabular}{| p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} | p{0.25cm} |}
                 \hline
                 4 & 7 & 10 & 15 & 20 \\ \hline
-            \end{tabular} \\
-            \begin{tabular}{p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm} p{0.25cm}}
-                & & & &
             \end{tabular}
         \end{table}
 	\end{center}

@@ -1,0 +1,133 @@
+\documentclass{beamer}
+
+\usepackage{amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage[export]{adjustbox}
+\usepackage{listings}
+\usepackage{fontspec}
+\usepackage{color}
+
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\definecolor{pred}{rgb}{0.9,0,0}
+\definecolor{pgrey}{rgb}{0.46,0.45,0.48}
+
+\lstset{language=Java,
+  showspaces=false,
+  showtabs=false,
+  breaklines=true,
+  showstringspaces=false,
+  breakatwhitespace=true,
+  commentstyle=\color{pgreen},
+  keywordstyle=\color{pblue},
+  stringstyle=\color{pred},
+  basicstyle=\ttfamily,
+}
+
+
+\usetheme{Madrid}
+\usecolortheme{beetle}
+\usefonttheme{professionalfonts}
+
+\setmainfont{Oswald}
+
+\lstset{basicstyle=\ttfamily,breaklines=true}
+\beamertemplatenavigationsymbolsempty
+
+\begin{document}
+
+\selectlanguage{brazil}
+\title[Recursão]{Recursão}
+\author{Prof. Andrey Masiero}
+
+\begin{frame}[plain,noframenumbering]
+  \titlepage
+\end{frame}
+
+\begin{frame}[plain,noframenumbering]
+  \frametitle{Agenda}
+  \tableofcontents
+\end{frame}
+
+\section{Recursão}
+
+\begin{frame}
+	\frametitle{Recursão}
+    \begin{itemize}[<+->]
+        \item Basicamente, é quando uma função utiliza em sua definição ela própria;
+        \item Ela é utilizada para dar uma definição finita a um conjunto que poder ser infinito;
+        \item É muito utilizado em problemas de dividir e conquistar.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Exemplo: Fatorial}
+    O fatorial de um número $n$, definido por $n!$, que é o produto de todos os inteiros positivos menores ou igual a $n$.
+
+    \begin{exampleblock}{A definição formal é:}
+        \[
+            n! = \prod_{k=1}^{n} k\ \ \ \forall n \in \mathbb{N}
+        \]
+
+
+        \[
+            5! = 1 \times 2 \times 3 \times 4 \times 5 = 120
+        \]
+    \end{exampleblock}
+
+    \begin{alertblock}{Caso especial}
+        \[
+            0! = 1
+        \]
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Fatorial Não Recursivo}
+    \centering
+    \lstinputlisting[language=Java]{src/nonrecursive.java}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Fatorial Recursivo}
+    \centering
+    \lstinputlisting[language=Java]{src/recursive.java}
+\end{frame}
+
+\section{Exercícios}
+
+\begin{frame}
+    \frametitle{Exercícios}
+    Dado a sequência de Fibonacci, com a definição formal abaixo, faça:
+    \[
+        F(n) =
+        \begin{cases}
+            0, & \text{se } n = 0; \\
+            1, & \text{se } n = 1; \\
+            F(n - 1) + F(n - 2) & \text{outros casos}.
+        \end{cases}
+    \]
+    \begin{enumerate}
+        \item Implemente a sequência de Fibonacci não recursiva.
+        \item Implemente a sequência de Fibonacci recursiva.
+        \item Desenvolva um algoritmo que calcule a soma dos $N$ primeiros números.
+        \item Desenvolva um algoritmo que calcule a soma dos elementos de um vetor.
+        \item Desenvolva um algoritmo que calcule o produto dos elementos de um vetor.
+        \item Teste os algoritmos em um programa principal.
+    \end{enumerate}
+\end{frame}
+
+\section{Referências}
+
+\begin{frame}
+    \frametitle{Referências Bibliográficas}
+    \begin{enumerate}
+        \item Cormen, Thomas H., Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein. ``Introduction to algorithms second edition.'' (2001).
+        \item Tamassia, Roberto, and Michael T. Goodrich. ``Estrutura de Dados e Algoritmos em Java.'' Porto Alegre, Ed. Bookman 4 (2007).
+        \item Ascencio, Ana Fernanda Gomes, and Graziela Santos de Araújo. ``Estruturas de Dados: algoritmos, análise da complexidade e implementações em JAVA e C/C++.'' São Paulo: Perarson Prentice Halt 3 (2010).
+    \end{enumerate}
+\end{frame}
+
+\end{document}
