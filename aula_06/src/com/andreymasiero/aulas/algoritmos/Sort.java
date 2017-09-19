@@ -10,11 +10,23 @@ public class Sort {
 	}
 
     public static void selectionSort (int[] data) {
-        // CODIGO AQUI
+        for (int i = 0; i < data.length; i++) {
+        		int sindex = i;
+        		for (int j = i + 1; j < data.length; j++)
+        			if (data[j] < data[sindex]) sindex = j;
+        		swap(data, i, sindex);
+        }
     }
 
 	public static void insertionSort (int[] data) {
-		// CODIGO AQUI
+		for (int i = 0; i < data.length; i++) {
+			int x = data[i];
+			for (int j = i - 1; j >= 0 && data[j] > x; j--) {
+				data[j + 1] = data[j];
+				data[j] = x;
+			}
+
+		}
 	}
 
 	public static void swap(int[] d, int a, int b) {
