@@ -8,6 +8,7 @@ Neste repositório você encontra todo o material das aulas ministradas sobre al
 * [aula 04](aula_04): Buscas: Sequencial e Binária, Ordenação BubbleSort - [código fonte](aula_04/src) | [pdf](aula_04/beamer/aula.pdf)
 * [aula 05](aula_05): Ordenação: Selection Sort e Insertion Sort - [código fonte](aula_05/src) | [pdf](aula_05/beamer/aula.pdf)
 * [aula 06](aula_06): Recursão - [código fonte](aula_06/src) | [pdf](aula_06/beamer/aula.pdf)
+* [aula 07](aula_07): Ordenação: MergeSort - [código fonte](aula_07/src) | [pdf](aula_07/beamer/aula.pdf)
 
 
 ## Opções de compilação
